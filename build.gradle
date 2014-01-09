@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+            mavenLocal()
+        maven { url "http://repo.springsource.org/libs-snapshot" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:0.5.0.BUILD-SNAPSHOT")
+    }
+}
+
+ext {
+        springBootVersion = '0.5.0.BUILD-SNAPSHOT'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'spring-boot-sample-simple'
+    version =  '0.5.0'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.springsource.org/libs-snapshot" }
+}
+
+dependencies {
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    compile("com.fasterxml.jackson.core:jackson-core")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile("junit:junit:4.11") {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+    testCompile("org.hamcrest:hamcrest-all")
+    testCompile("org.mockito:mockito-all:1.9.5")
+    testCompile("com.jayway.jsonpath:json-path:0.9.1")
+    testCompile("com.jayway.jsonpath:json-path-assert:0.9.1")
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.9'
+}
