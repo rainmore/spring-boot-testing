@@ -11,16 +11,16 @@ public class ExampleApplicationContext {
 
     @Resource
     private Environment environment;
-
-    @Bean
-    public javax.sql.DataSource dataSource() {
-        BoneCPDataSource dataSource = new BoneCPDataSource();
-
-        dataSource.setDriverClass(environment.getRequiredProperty("db.driver"));
-        dataSource.setJdbcUrl(environment.getRequiredProperty("db.url"));
-        dataSource.setUsername(environment.getRequiredProperty("db.username"));
-        dataSource.setPassword(environment.getRequiredProperty("db.password"));
-
-        return dataSource;
-    }
+//
+//    @Bean
+//    public javax.sql.DataSource dataSource() {
+//        BoneCPDataSource dataSource = new BoneCPDataSource();
+//
+//        dataSource.setDriverClass(environment.getRequiredProperty("db.driver"));
+//        dataSource.setJdbcUrl(environment.getRequiredProperty("db.url"));
+//        dataSource.setUsername(environment.getRequiredProperty("db.username"));
+//        dataSource.setPassword(environment.getRequiredProperty("db.password"));
+//
+//        return dataSource;
+//    }
 }

@@ -13,6 +13,7 @@ import static org.hamcrest.Matchers.arrayWithSize;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.hasToString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class ApplicationTest {
@@ -44,6 +45,20 @@ public class ApplicationTest {
            .andExpect(status().isOk())
            .andExpect(content().string("Hello World!45435"))
            ;
+    }
+
+    @Test
+    public void testHome1() throws Exception {
+
+        String name = "felix";
+        this.mockMvc.perform(get("/name").param("name", name))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string(String.format("Hello, %s", name)))
+        ;
+
+        this.mockMvc.perform(get("/name"))
+            .andExpect(status().isBadRequest());
     }
 
 
