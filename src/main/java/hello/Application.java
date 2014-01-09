@@ -2,21 +2,29 @@ package hello;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.*;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import javax.servlet.ServletException;
+import javax.naming.Binding;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 @Controller
+//@EnableWebMvc
+@ComponentScan
 @EnableAutoConfiguration
 public class Application {
 
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     @ResponseBody
     String home() {
         return "Hello World!45435";
@@ -30,28 +38,26 @@ public class Application {
 
     @RequestMapping("/model")
     @ResponseBody
-    Model model() {
-        return new Model("name1", "code1");
+    Person model() {
+        return new Person("name1", "code1");
     }
 
     @RequestMapping("/list/model")
     @ResponseBody
-    List<Model> modelList() {
-        List<Model> list = new ArrayList<Model>();
-        list.add(new Model("name1", "code1"));
-        list.add(new Model("name1", "code1"));
-        list.add(new Model("name1", "code1"));
-        list.add(new Model("name1", "code1"));
+    List<Person> modelList() {
+        List<Person> list = new ArrayList<Person>();
+        list.add(new Person("name1", "code1"));
+        list.add(new Person("name1", "code1"));
+        list.add(new Person("name1", "code1"));
+        list.add(new Person("name1", "code1"));
         return list;
     }
 
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     @ResponseBody
-    String post(HttpServletRequest request) {
-        String s = request.getQueryString();
-        if (s == null) return "asdf asdf";
-        return s;
+    Map<String, String> post(@RequestBody Map<String, String> data, BindingResult result) {
+        return data;
     }
 
 

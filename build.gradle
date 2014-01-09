@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-            mavenLocal()
+        mavenLocal()
         maven { url "http://repo.springsource.org/libs-snapshot" }
     }
     dependencies {
@@ -9,7 +9,8 @@ buildscript {
 }
 
 ext {
-        springBootVersion = '0.5.0.BUILD-SNAPSHOT'
+    springBootVersion = '0.5.0.BUILD-SNAPSHOT'
+    jacksonVersion = '2.3.0'
 }
 
 apply plugin: 'java'
@@ -19,7 +20,7 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'spring-boot-testing'
-    version =  '0.5.0'
+    version = '0.5.0'
 }
 
 repositories {
@@ -30,7 +31,13 @@ repositories {
 dependencies {
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("com.fasterxml.jackson.core:jackson-core")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-json-org:${jacksonVersion}")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:${jacksonVersion}")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-joda:${jacksonVersion}")
+
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+//    compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     testCompile("junit:junit:4.11") {
         exclude group: "org.hamcrest", module: "hamcrest-core"

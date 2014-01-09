@@ -2,11 +2,14 @@ package hello;
 
 import java.io.Serializable;
 
-public class Model implements Serializable {
+public class Person implements Serializable {
     private String name;
     private String code;
 
-    public Model(String name, String code) {
+    public Person() {
+    }
+
+    public Person(String name, String code) {
         this.name = name;
         this.code = code;
     }
